@@ -13,14 +13,6 @@ struct ItemDetailScreen: View {
     
     let item: Item
     
-    var isAddedToCart: Bool {
-        model.cart.contains(item)
-    }
-    
-    var addToCartButtonTitle: String {
-        isAddedToCart ? "Added!" : "Add to Cart"
-    }
-    
     var body: some View {
         List {
             Section {
@@ -37,10 +29,7 @@ struct ItemDetailScreen: View {
         .navigationTitle(item.name)
         .toolbar {
             ToolbarItem {
-                Button(addToCartButtonTitle) {
-                    model.addToCart(item)
-                }
-                .disabled(isAddedToCart)
+                AddToCartButton(item: item)
             }
         }
     }

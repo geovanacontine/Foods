@@ -12,36 +12,17 @@ struct CartScreen: View {
     
     @Environment(Model.self) var model
     
-    var totalPrice: Double {
-        model.cart.map({ $0.price }).reduce(0, +)
-    }
-    
     var body: some View {
         List {
             Section("Checkout") {
-                SingleRowView(title: "Total", value: "R$ \(totalPrice)")
+                CartCheckoutView()
             }
             
             Section("Items") {
-                if model.cart.isEmpty {
-                    EmptyCartView()
-                } else {
-                    ForEach(model.cart) { item in
-                        ItemCompactView(item: item)
-                    }
-                    .onDelete(perform: removeItem)
-                }
+                CartItemsView()
             }
         }
         .navigationTitle("Cart")
-    }
-    
-    func removeItem(at offsets: IndexSet) {
-        let itemsToDelete = offsets.map { model.cart[$0] }
-        
-        for item in itemsToDelete {
-            model.removeFromCart(item)
-        }
     }
 }
 

@@ -11,14 +11,10 @@ struct CatalogScreen: View {
     
     @Environment(Model.self) var model
     
-    var sortedItems: [Item] {
-        model.items.sorted(by: { $0.name < $1.name })
-    }
-    
     var body: some View {
         List {
             Section {
-                ForEach(sortedItems) { item in
+                ForEach(model.items) { item in
                     NavigationLink(value: item) {
                         ItemCompactView(item: item)
                     }

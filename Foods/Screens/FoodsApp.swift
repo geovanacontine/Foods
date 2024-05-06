@@ -15,7 +15,13 @@ struct FoodsApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                RootScreen()
+                TabViewItem("Menu", icon: "menucard") {
+                    CatalogScreen()
+                }
+                
+                TabViewItem("Cart", icon: "cart", badge: model.cart.count) {
+                    CartScreen()
+                }
             }
             .environment(model)
         }
