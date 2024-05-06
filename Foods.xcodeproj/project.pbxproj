@@ -75,7 +75,8 @@
 		0100A5562BE5543800982D20 /* Foods */ = {
 			isa = PBXGroup;
 			children = (
-				0100A5662BE5544A00982D20 /* Screens */,
+				0100A5572BE5543800982D20 /* FoodsApp.swift */,
+				01327C6D2BE95A2E0035405D /* Features */,
 				0100A5672BE5545000982D20 /* Views */,
 				0100A5652BE5544300982D20 /* Models */,
 				0100A5682BE5545900982D20 /* Resources */,
@@ -100,28 +101,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		0100A5662BE5544A00982D20 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				0100A5572BE5543800982D20 /* FoodsApp.swift */,
-				0100A56B2BE554B900982D20 /* CatalogScreen.swift */,
-				018090052BE8F6E80093E730 /* ItemDetailScreen.swift */,
-				018090092BE8FBC60093E730 /* CartScreen.swift */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		0100A5672BE5545000982D20 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0100A5732BE55A7300982D20 /* ItemCompactView.swift */,
 				018090072BE8F87C0093E730 /* SingleRowView.swift */,
-				01C4F0392BE90B6300CD8FEA /* EmptyCartView.swift */,
 				0100A5712BE5588900982D20 /* PreviewContainer.swift */,
 				01327C652BE953470035405D /* TabViewItem.swift */,
-				01327C672BE9563C0035405D /* AddToCartButton.swift */,
-				01327C692BE958560035405D /* CartCheckoutView.swift */,
-				01327C6B2BE958A50035405D /* CartItemsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +118,37 @@
 				0100A55D2BE5543900982D20 /* Preview Content */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		01327C6D2BE95A2E0035405D /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				01327C6E2BE95A340035405D /* Catalog */,
+				01327C6F2BE95A3C0035405D /* Cart */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		01327C6E2BE95A340035405D /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				0100A56B2BE554B900982D20 /* CatalogScreen.swift */,
+				018090052BE8F6E80093E730 /* ItemDetailScreen.swift */,
+				0100A5732BE55A7300982D20 /* ItemCompactView.swift */,
+			);
+			path = Catalog;
+			sourceTree = "<group>";
+		};
+		01327C6F2BE95A3C0035405D /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				018090092BE8FBC60093E730 /* CartScreen.swift */,
+				01C4F0392BE90B6300CD8FEA /* EmptyCartView.swift */,
+				01327C672BE9563C0035405D /* AddToCartButton.swift */,
+				01327C692BE958560035405D /* CartCheckoutView.swift */,
+				01327C6B2BE958A50035405D /* CartItemsView.swift */,
+			);
+			path = Cart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
