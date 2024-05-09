@@ -1,5 +1,5 @@
 //
-//  CatalogScreen.swift
+//  MenuScreen.swift
 //  Foods
 //
 //  Created by Geovana Contine on 03/05/24.
@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct CatalogScreen: View {
+struct MenuScreen: View {
     
-    @Environment(Model.self) var model
+    @Environment(Cart.self) var cart
+    @State var model = MenuViewModel()
     
     var body: some View {
         List {
@@ -21,18 +22,12 @@ struct CatalogScreen: View {
                 }
             }
         }
-        .navigationTitle("Catalog")
+        .navigationTitle("Menu")
         .navigationDestination(for: Item.self) { item in
-            ItemDetailScreen(item: item)
+            ItemDetailScreen(cart: cart, item: item)
         }
         .task {
             model.loadItems()
         }
-    }
-}
-
-#Preview {
-    PreviewContainer {
-        CatalogScreen()
     }
 }

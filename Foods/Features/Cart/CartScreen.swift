@@ -6,28 +6,34 @@
 //
 
 import SwiftUI
-import PassKit
 
 struct CartScreen: View {
     
-    @Environment(Model.self) var model
+    @State var model: CartViewModel
+    
+    init(cart: Cart) {
+        self.model = CartViewModel(cart: cart)
+    }
     
     var body: some View {
         List {
             Section("Checkout") {
-                CartCheckoutView()
+                VStack {
+                    SingleRowView(title: "Total", value: "R$ \(model.totalPrice)")
+                }
             }
             
             Section("Items") {
-                CartItemsView()
+                if model.items.isEmpty {
+                    EmptyCartView()
+                } else {
+                    ForEach(model.items) { item in
+                        ItemCompactView(item: item)
+                    }
+                    .onDelete(perform: model.removeItem)
+                }
             }
         }
         .navigationTitle("Cart")
-    }
-}
-
-#Preview {
-    PreviewContainer {
-        CartScreen()
     }
 }
