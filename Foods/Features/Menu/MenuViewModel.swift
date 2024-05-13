@@ -7,11 +7,10 @@
 
 import Foundation
 
-@Observable
-class MenuViewModel {
+class MenuViewModel: ObservableObject {
     
     // State
-    var items: [Item] = []
+    @Published var items: [Item] = []
 }
 
 // MARK: - Presentation

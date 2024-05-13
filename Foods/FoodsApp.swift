@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct FoodsApp: App {
     
-    @State var cart = Cart()
+    @StateObject var cart = Cart()
     
     var body: some Scene {
         WindowGroup {
@@ -20,10 +20,10 @@ struct FoodsApp: App {
                 }
                 
                 TabViewItem("Cart", icon: "cart", badge: cart.items.count) {
-                    CartScreen(cart: cart)
+                    CartScreen()
                 }
             }
-            .environment(cart)
+            .environmentObject(cart)
         }
     }
 }

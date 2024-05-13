@@ -7,24 +7,18 @@
 
 import Foundation
 
-@Observable
-class CartViewModel {
+class CartViewModel: ObservableObject {
     
     // Dependencies
-    private let cart: Cart
+    private var cart: Cart?
     
-    init(cart: Cart) {
-        self.cart = cart
-    }
+    // State
+    @Published var items: [Item] = []
 }
 
 // MARK: - Presentation
 
 extension CartViewModel {
-    var items: [Item] {
-        cart.items
-    }
-    
     var totalPrice: Double {
         items.map({ $0.price }).reduce(0, +)
     }
@@ -33,15 +27,26 @@ extension CartViewModel {
 // MARK: - Actions
 
 extension CartViewModel {
+    func loadItems() {
+        items = cart?.items ?? []
+    }
+    
     func addItem(_ item: Item) {
-        cart.addItem(item)
+        cart?.addItem(item)
+        loadItems()
     }
     
     func removeItem(at offsets: IndexSet) {
         let itemsToDelete = offsets.map { items[$0] }
         
         for item in itemsToDelete {
-            cart.removeItem(item)
+            cart?.removeItem(item)
         }
+        
+        loadItems()
+    }
+    
+    func setupDependencies(cart: Cart) {
+        self.cart = cart
     }
 }

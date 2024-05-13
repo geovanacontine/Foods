@@ -9,33 +9,38 @@ import SwiftUI
 
 struct ItemDetailScreen: View {
     
-    @State var model: ItemDetailViewModel
+    @EnvironmentObject var cart: Cart
+    @ObservedObject var viewModel: ItemDetailViewModel
     
-    init(cart: Cart, item: Item) {
-        self.model = ItemDetailViewModel(cart: cart, item: item)
+    init(item: Item) {
+        viewModel = ItemDetailViewModel(item: item)
     }
     
     var body: some View {
         List {
             Section {
-                Image(model.item.id)
+                Image(viewModel.item.id)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
             
             Section {
-                SingleRowView(title: "Calories", value: "\(model.item.calories) kcal")
-                SingleRowView(title: "Price", value: "R$ \(model.item.price)")
+                SingleRowView(title: "Calories", value: "\(viewModel.item.calories) kcal")
+                SingleRowView(title: "Price", value: "R$ \(viewModel.item.price)")
             }
         }
-        .navigationTitle(model.item.name)
+        .navigationTitle(viewModel.item.name)
         .toolbar {
             ToolbarItem {
-                Button(model.addToCartButtonTitle) {
-                    model.addToCart()
+                Button(viewModel.addToCartButtonTitle) {
+                    viewModel.addToCart()
                 }
-                .disabled(model.isAddedToCart)
+                .disabled(viewModel.isAddedToCart)
             }
+        }
+        .task {
+            viewModel.setupDependencies(cart: cart)
+            viewModel.loadData()
         }
     }
 }

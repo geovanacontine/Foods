@@ -9,13 +9,12 @@ import SwiftUI
 
 struct MenuScreen: View {
     
-    @Environment(Cart.self) var cart
-    @State var model = MenuViewModel()
+    @StateObject var viewModel = MenuViewModel()
     
     var body: some View {
         List {
             Section {
-                ForEach(model.items) { item in
+                ForEach(viewModel.items) { item in
                     NavigationLink(value: item) {
                         ItemCompactView(item: item)
                     }
@@ -24,10 +23,10 @@ struct MenuScreen: View {
         }
         .navigationTitle("Menu")
         .navigationDestination(for: Item.self) { item in
-            ItemDetailScreen(cart: cart, item: item)
+            ItemDetailScreen(item: item)
         }
         .task {
-            model.loadItems()
+            viewModel.loadItems()
         }
     }
 }
