@@ -12,13 +12,17 @@ class Cart {
     
     // State
     var items: [Item] = []
-    
-    // Actions
-    func addItem(_ item: Item) {
-        items.append(item)
-    }
-    
-    func removeItem(_ item: Item) {
-        items.removeAll(where: { $0.id == item.id })
+}
+
+// Actions
+extension Cart {
+    func loadItems() {
+        func addItem(_ item: Item) {
+            items.append(item)
+        }
+        
+        func removeItem(_ item: Item) {
+            items.removeAll(where: { $0.id == item.id })
+        }
     }
 }

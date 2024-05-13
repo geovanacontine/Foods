@@ -11,18 +11,15 @@ struct TabViewItem<RootView: View>: View {
     
     private let title: String
     private let icon: String
-    private let badge: Int
     private var root: RootView
     
     init(
         _ title: String,
         icon: String,
-        badge: Int = 0,
         @ViewBuilder root: () -> RootView
     ) {
         self.title = title
         self.icon = icon
-        self.badge = badge
         self.root = root()
     }
     
@@ -33,6 +30,5 @@ struct TabViewItem<RootView: View>: View {
         .tabItem {
             Label(title, systemImage: icon)
         }
-        .badge(badge)
     }
 }
