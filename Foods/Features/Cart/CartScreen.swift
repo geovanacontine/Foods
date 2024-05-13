@@ -9,8 +9,7 @@ import SwiftUI
 
 struct CartScreen: View {
     
-    @EnvironmentObject var cart: Cart
-    @StateObject var viewModel = CartViewModel()
+    let viewModel: CartViewModel
     
     var body: some View {
         List {
@@ -32,9 +31,5 @@ struct CartScreen: View {
             }
         }
         .navigationTitle("Cart")
-        .task {
-            viewModel.setupDependencies(cart: cart)
-            viewModel.loadItems()
-        }
     }
 }

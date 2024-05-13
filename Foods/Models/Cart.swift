@@ -7,10 +7,11 @@
 
 import Foundation
 
-class Cart: ObservableObject {
+@Observable
+class Cart {
     
     // State
-    @Published var items: [Item] = []
+    var items: [Item] = []
     
     // Actions
     func addItem(_ item: Item) {

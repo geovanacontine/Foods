@@ -9,12 +9,7 @@ import SwiftUI
 
 struct ItemDetailScreen: View {
     
-    @EnvironmentObject var cart: Cart
-    @ObservedObject var viewModel: ItemDetailViewModel
-    
-    init(item: Item) {
-        viewModel = ItemDetailViewModel(item: item)
-    }
+    let viewModel: ItemDetailViewModel
     
     var body: some View {
         List {
@@ -37,10 +32,6 @@ struct ItemDetailScreen: View {
                 }
                 .disabled(viewModel.isAddedToCart)
             }
-        }
-        .task {
-            viewModel.setupDependencies(cart: cart)
-            viewModel.loadData()
         }
     }
 }

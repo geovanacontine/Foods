@@ -7,21 +7,13 @@
 
 import Foundation
 
-class MenuViewModel: ObservableObject {
+@Observable
+class MenuViewModel {
     
     // State
-    @Published var items: [Item] = []
-}
-
-// MARK: - Presentation
-
-extension MenuViewModel {
-    //
-}
-
-// MARK: - Actions
-
-extension MenuViewModel {
+    var items: [Item] = []
+    
+    // Actions
     func loadItems() {
         items = [
             Item(id: "1", name: "Bic Mac", calories: 499, price: 19.9),

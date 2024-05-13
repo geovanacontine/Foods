@@ -7,23 +7,25 @@
 
 import Foundation
 
-class ItemDetailViewModel: ObservableObject {
+class ItemDetailViewModel {
     
     // Dependencies
-    private var cart: Cart?
+    private let cart: Cart
     private(set) var item: Item
     
-    // State
-    @Published var isAddedToCart = false
-    
-    init(item: Item) {
+    init(item: Item, cart: Cart) {
         self.item = item
+        self.cart = cart
     }
 }
 
 // MARK: - Presentation
 
 extension ItemDetailViewModel {
+    var isAddedToCart: Bool {
+        cart.items.contains(item)
+    }
+    
     var addToCartButtonTitle: String {
         isAddedToCart ? "Added!" : "Add to Cart"
     }
@@ -32,16 +34,7 @@ extension ItemDetailViewModel {
 // MARK: - Actions
 
 extension ItemDetailViewModel {
-    func loadData() {
-        isAddedToCart = cart?.items.contains(item) ?? false
-    }
-    
     func addToCart() {
-        cart?.addItem(item)
-        loadData()
-    }
-    
-    func setupDependencies(cart: Cart) {
-        self.cart = cart
+        cart.addItem(item)
     }
 }
